@@ -21,3 +21,13 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+.classpath
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.m2e.core.prefs
+.settings/org.eclipse.jdt.core.prefs
+target/classes/application.properties
+*.MF
+target/classes/META-INF/maven/net.slipp/my-slipp-1/pom.properties
+target/classes/META-INF/maven/net.slipp/my-slipp-1/pom.xml
+target/classes/static/form.html
+target/classes/static/index.html
