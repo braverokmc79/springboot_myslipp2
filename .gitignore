@@ -31,3 +31,13 @@ target/classes/META-INF/maven/net.slipp/my-slipp-1/pom.properties
 target/classes/META-INF/maven/net.slipp/my-slipp-1/pom.xml
 target/classes/static/form.html
 target/classes/static/index.html
+target/*
+.settings/*
+.settings/.jsdtscope
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+.settings/org.eclipse.wst.validation.prefs
+.settings/org.eclipse.wst.common.project.facet.core.xml
+
+.settings/org.eclipse.wst.common.project.facet.core.xml
