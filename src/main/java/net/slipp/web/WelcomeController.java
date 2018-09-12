@@ -36,8 +36,5 @@ public class WelcomeController {
 		log.info("hellowrold - log2");
 		return "안녕 Spring Boot!";
 	}
-	
-	
-	
-	
+
 }
