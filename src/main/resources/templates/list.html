@@ -35,7 +35,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">        
         <li><a href="/form.html">회원가입</a></li>
-        <li><a href="/list.html">사용자 목록</a></li>
+        <li><a href="/list">사용자 목록</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -48,22 +48,24 @@
  		<h3 class="text-center">사용자 목록</h3>
  		<div class="responsive-table">
  		<table class="table">
+ 		    <thead>
  		  	<tr class="success">
  		  		<th>사용자 아이디</th>
  		  		<th>이름</th>
  		  		<th>이메일</th>
  		  	</tr>
- 		  	<tr>
- 		  	   <td>macaronics</td>
- 		  	   <td>이순신</td>
- 		  	   <td>braverokmc79@gmail.com</td>
- 		  	</tr>
- 		  	<tr>
- 		  	   <td>macaronics2</td>
- 		  	   <td>나폴레옹</td>
- 		  	   <td>braverokmc79@gmail.com</td>
- 		  	</tr>
- 		</table>
+		   </thead>
+		   <tbody>
+		   		{{#users}}
+		   		<tr>
+		   		  <th scope="row">{{userId}}</th>
+		   		  <td>{{name}}</td>
+		   		  <td>{{email}}</td>
+		   		</tr>
+		   		{{/users}}
+		   </tbody>		
+				
+ 		</table>	
  		</div>
  	</div>
  </div>
