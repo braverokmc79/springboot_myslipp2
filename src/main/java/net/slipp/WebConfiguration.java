@@ -3,6 +3,7 @@ package net.slipp;
 import java.sql.SQLException;
 
 import org.h2.server.web.WebServlet;
+import org.h2.tools.Server;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +22,9 @@ public class WebConfiguration {
     @Bean(initMethod="start",destroyMethod="stop")
     public org.h2.tools.Server h2WebConsoleServer () throws SQLException {
         //return org.h2.tools.Server.createWebServer("-web","-webAllowOthers","-webDaemon","-webPort", "5050");
-    	return org.h2.tools.Server.createWebServer("-web","-webAllowOthers","-webDaemon");
+        Server server = Server.createTcpServer("-tcpPort", "5050", "-tcpAllowOthers").start();
+    	return server;
+    
     }
     
 }
