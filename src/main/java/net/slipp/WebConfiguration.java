@@ -21,10 +21,15 @@ public class WebConfiguration {
 	
     @Bean(initMethod="start",destroyMethod="stop")
     public org.h2.tools.Server h2WebConsoleServer () throws SQLException {
-        //return org.h2.tools.Server.createWebServer("-web","-webAllowOthers","-webDaemon","-webPort", "5050");
-        Server server = Server.createTcpServer("-tcpPort", "5050", "-tcpAllowOthers").start();
-    	return server;
-    
+    	Server webServer = Server.createWebServer("-webAllowOthers","-webPort","5050"); // (4a)
+       // Server server = Server.createTcpServer("-tcpAllowOthers","-tcpPort","9092");    // (4b)
+       // Server server = Server.createTcpServer("-tcpPort", "5051", "-tcpAllowOthers").start();
+       // return org.h2.tools.Server.createWebServer("-webPort","-webAllowOthers","-webDaemon");
+       // return org.h2.tools.Server.createTcpServer("-tcpPort", "5050", "-tcpAllowOthers");
+        
+        return webServer;
     }
     
+    
+
 }
