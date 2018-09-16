@@ -19,6 +19,12 @@ public class User {
 	private String name;
 	private String email;
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	public String getUserId() {
 		return userId;
@@ -45,9 +51,18 @@ public class User {
 		this.email = email;
 	}
 	
+	public void update(User newUser) {
+		this.name=newUser.getName();
+		this.password=newUser.getPassword();
+		this.email=newUser.getEmail();		
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + "]";
 	}
+	
 	
 }
