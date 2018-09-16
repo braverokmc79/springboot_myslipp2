@@ -1,5 +1,7 @@
 package net.slipp.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,28 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository UserRepository;
+	
+	@GetMapping("/loginForm")
+	public String loginForm() {
+		return "/users/login";
+	}
+
+	@PostMapping("/login")
+	public String login(String userId, String password, HttpSession session){
+		User user =UserRepository.findByUserId(userId);
+		if(user==null) {
+			log.info("아이디가 없습니다.");
+			return "redirect:/users/loginForm";
+		}
+		if(!password.equals(user.getPassword())) {
+			log.info("패스워드 불일치");
+			return "redirect:/users/loginForm";
+		}
+		log.info("Login Success : " +user.toString());
+		session.setAttribute("user", user);
+		return "redirect:/";
+	}
+	
 	
 	@GetMapping("/form")
 	public String registerForm(){
