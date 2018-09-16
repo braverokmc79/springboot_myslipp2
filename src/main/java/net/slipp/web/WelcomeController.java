@@ -15,19 +15,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-//@RestController
 @Controller
 public class WelcomeController {
 	
 	private static final Logger log = LoggerFactory.getLogger(WelcomeController.class);
 	int netSalesReportListSize ;
+	
+	@RequestMapping("/")
+	public String index(){
+		log.info("root  index" );
+		return "index";
+	}
+	
 	//mustache
 	@GetMapping(value="/helloworld/{name}", produces="text/html")
 	public String welcome(@PathVariable("name") String name, int age, Model model, HttpSession session, HttpServletRequest request ) {
-		request.getServletContext().getRealPath("/");
-		
-
+		request.getServletContext().getRealPath("/");	
 		log.info("helloWorld - log");	
 		model.addAttribute("name", name);//uri 로 값 가져오기
 		model.addAttribute("age", age); // age 로 값 가져오기
@@ -48,7 +51,5 @@ public class WelcomeController {
 	}
 
 
-
-	
 
 }
