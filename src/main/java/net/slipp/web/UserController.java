@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,7 +29,7 @@ public class UserController {
 	}
 	
 	
-	@PostMapping("/")
+	@PostMapping("")
 	public String create(User user) {
 		log.info("userId : " +user.toString());
 		//users.add(user);
@@ -36,12 +37,20 @@ public class UserController {
 		return "redirect:/users/";
 	}
 
-	@GetMapping("/")
+	@GetMapping("")
 	public String list(Model model){
 		model.addAttribute("users", UserRepository.findAll());
 		return "/users/list";
 	}
 
+	
+	@GetMapping("{id}/form")
+	public String updateForm(@PathVariable Long id, Model model){
+		User user =UserRepository.findOne(id);
+		log.debug("updateForm : user -  {} " , user.toString());
+		model.addAttribute("user", user);
+		return "/users/updateForm";
+	}
 	
 	
 }
