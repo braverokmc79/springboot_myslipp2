@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import net.slipp.HttpSessionUtils;
 import net.slipp.domain.User;
 import net.slipp.domain.UserRepository;
 
@@ -37,12 +38,15 @@ public class UserController {
 			log.info("아이디가 없습니다.");
 			return "redirect:/users/loginForm";
 		}
-		if(!password.equals(user.getPassword())) {
+		
+		if(!user.matchPassword(password)) {
 			log.info("패스워드 불일치");
 			return "redirect:/users/loginForm";
 		}
+		
+		
 		log.info("Login Success : " +user.toString());
-		session.setAttribute("sessionedUser", user);
+		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
 		return "redirect:/";
 	}
 	
@@ -77,12 +81,13 @@ public class UserController {
 	
 	@GetMapping("/{id}/form")
 	public String updateForm(@PathVariable Long id, Model model, HttpSession session){		
-		User sessionedUser =(User)session.getAttribute("sessionedUser");
-		if(sessionedUser==null) {
-			return "redirect:/users/form";
+		if(HttpSessionUtils.isLoginUser(session)) {
+			return "redirect:/users/loginForm";
 		}
 		
-		if(!id.equals(sessionedUser.getId())) {
+		User sessionedUser =(User)session.getAttribute("sessionedUser");
+		
+		if(!sessionedUser.matchId(id)) {
 			throw new IllegalStateException("자신의 정보만 수정할 수 있습니다.");
 		}
 				
@@ -91,6 +96,9 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "/users/updateForm";
 	}
+	
+	
+	
 	
 	@PutMapping("/update/{userId}")
 	public String update(@PathVariable String userId, User newUser) {
