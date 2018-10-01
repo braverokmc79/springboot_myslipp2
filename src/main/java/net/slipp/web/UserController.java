@@ -81,7 +81,7 @@ public class UserController {
 	
 	@GetMapping("/{id}/form")
 	public String updateForm(@PathVariable Long id, Model model, HttpSession session){		
-		if(HttpSessionUtils.isLoginUser(session)) {
+		if(!HttpSessionUtils.isLoginUser(session)) {
 			return "redirect:/users/loginForm";
 		}
 		

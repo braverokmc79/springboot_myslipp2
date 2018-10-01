@@ -1,4 +1,4 @@
-package net.slipp;
+package net.slipp.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
